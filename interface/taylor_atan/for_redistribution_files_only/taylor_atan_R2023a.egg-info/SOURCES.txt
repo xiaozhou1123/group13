@@ -1,0 +1,7 @@
+setup.py
+taylor_atan/__init__.py
+taylor_atan/taylor_atan.ctf
+taylor_atan_R2023a.egg-info/PKG-INFO
+taylor_atan_R2023a.egg-info/SOURCES.txt
+taylor_atan_R2023a.egg-info/dependency_links.txt
+taylor_atan_R2023a.egg-info/top_level.txt
