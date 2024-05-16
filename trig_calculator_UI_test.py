@@ -7,6 +7,7 @@ class TrigCalculator(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("三角函数计算器")
+        self.resizable(False, False)  # 禁用窗口缩放
 
         # 创建菜单栏
         menubar = tk.Menu(self)
