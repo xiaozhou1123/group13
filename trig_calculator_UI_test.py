@@ -38,6 +38,7 @@ class TrigCalculator(tk.Tk):
         self.label_value.grid(row=2, column=0, padx=10, pady=5, sticky="w")
         self.entry_value = tk.Entry(self)
         self.entry_value.grid(row=2, column=1, padx=10, pady=5)
+        self.entry_value.bind("<Return>", lambda event: self.calculate())  # 绑定回车键
 
         # 设置计算按钮
         self.button_calculate = tk.Button(self, text="计算", command=self.calculate)
