@@ -7,6 +7,7 @@ class TrigCalculator(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("三角函数计算器")
+        self.resizable(False, False)  # 禁用窗口缩放
 
         # 创建菜单栏
         menubar = tk.Menu(self)
@@ -38,6 +39,7 @@ class TrigCalculator(tk.Tk):
         self.label_value.grid(row=2, column=0, padx=10, pady=5, sticky="w")
         self.entry_value = tk.Entry(self)
         self.entry_value.grid(row=2, column=1, padx=10, pady=5)
+        self.entry_value.bind("<Return>", lambda event: self.calculate())  # 绑定回车键
 
         # 设置计算按钮
         self.button_calculate = tk.Button(self, text="计算", command=self.calculate)
@@ -47,6 +49,15 @@ class TrigCalculator(tk.Tk):
         function = self.function_var.get().lower()
         mode = self.angle_var.get().lower()
         value_str = self.entry_value.get()
+
+        # 如果用户输入为 "()"，则弹出错误消息
+        if value_str == "()":
+            messagebox.showerror("错误", "输入的值无效，请重新输入")
+            return
+        # 如果用户输入为空，则弹出错误消息
+        if not value_str:
+            messagebox.showerror("错误", "输入为空")
+            return
 
         # 如果用户选择角度制，则不允许输入 "pi"
         if mode == 'deg' and "pi" in value_str:
@@ -107,7 +118,7 @@ class TrigCalculator(tk.Tk):
     def show_help(self):
         messagebox.showinfo("使用说明", "这是一个简单的三角函数计算器，可以计算 sin、cos、arcsin、arccos、arctan 函数的值。\n\n"
                                        "1. 选择要计算的函数。\n"
-                                       "2. 选择输入的形式，可以是角度（deg）或弧度（rad）。\n"
+                                       "2. 选择输入的形式，可以是角度（deg）或弧度（rad）；支持输入四则运算表达式。\n"
                                        "3. 输入要计算的值，可以使用 pi 表示π，例如输入 2 * pi。\n"
                                        "4. 点击计算按钮进行计算。\n\n"
                                        "注意：角度制下不允许输入 pi。")
